@@ -10,4 +10,5 @@ export const StyledSearchBar = styled(Searchbar).attrs(() => ({
   },
 }))`
   background-color: #ffffff;
+  flex:1;
 `;

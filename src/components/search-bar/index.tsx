@@ -20,6 +20,7 @@ const SearchBar = ({
       placeholder={placeholder}
       clearIcon={hasClearIcon ? 'close' : undefined}
       onChangeText={onChangeValue}
+      elevation={1}
     />
   )
 }
