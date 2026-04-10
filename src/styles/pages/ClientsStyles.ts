@@ -22,6 +22,34 @@ export const ClientsTitle = styled.Text`
   color: #1E1E1E;
 `
 
+export const NoClientsCard = styled.View`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+`
+
+export const NoClientsTextWrapper = styled.View`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+`
+
+
+export const NoClientsCardTitle = styled.Text`
+  color: #1E1E1E;
+`
+
+export const NoClientsCardDescription = styled.Text`
+  color: #414141;
+`
+
+export const CreateClientBtn = styled.Text`
+  font-size: 16px;
+`
+
 export const TabBarIconWrapper = styled.View<{ focused: boolean }>`
   display: flex;
   align-items: center;

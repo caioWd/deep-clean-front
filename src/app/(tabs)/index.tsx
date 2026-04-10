@@ -1,4 +1,4 @@
-import { HomeTitle, HomeWrapper } from '../styles/pages/HomeStyles'
+import { HomeTitle, HomeWrapper } from '../../styles/pages/HomeStyles'
 
 
 const App = () => {

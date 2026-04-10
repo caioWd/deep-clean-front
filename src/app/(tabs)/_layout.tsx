@@ -1,17 +1,29 @@
 import Feather from '@expo/vector-icons/Feather';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Tabs } from "expo-router";
-import { TabBarIconWrapper } from "../styles/pages/HomeStyles";
-import Header from '../components/header';
+import Header from '../../components/header';
+import { TabBarIconWrapper } from "../../styles/pages/HomeStyles";
+import { StatusBar } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const Layout = () => {
   return (
-    <>
+    <SafeAreaProvider style={{
+      flex: 1,
+      backgroundColor: '#1F6F8B'
+    }}>
+      <StatusBar backgroundColor='#1F6F8B' />
       <Header />
+
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarActiveTintColor: '#1F6F8B'
+          tabBarActiveTintColor: '#1F6F8B',
+          tabBarStyle: {
+            marginBottom: 0,
+            paddingBottom: 0,
+
+          },
         }}>
         <Tabs.Screen
           name="index"
@@ -25,7 +37,7 @@ const Layout = () => {
           }}
         />
         <Tabs.Screen
-          name="pages/clients/index"
+          name="clients"
           options={{
             title: 'Clientes',
             tabBarIcon: ({ focused }) => (
@@ -36,7 +48,7 @@ const Layout = () => {
           }}
         />
       </Tabs>
-    </>
+    </SafeAreaProvider >
   )
 }
 
