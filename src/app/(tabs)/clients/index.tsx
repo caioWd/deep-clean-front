@@ -15,13 +15,7 @@ const Clients = () => {
   const [searchValue, setSearchValue] = useState('')
   const mockClients: ClientsList = {
     clients: [
-      { name: "Caio" },
-      { name: "César" },
-      { name: "Elizio Gabriel" },
-      { name: "Evelen Silva" },
-      { name: "Kauan" },
-      { name: "Mário" },
-      { name: "Victor Guimarães" }
+
     ]
   }
 
@@ -38,7 +32,7 @@ const Clients = () => {
           <IconButton
             icon='plus'
             mode="contained"
-            onPress={() => {
+            onPress={() => { 
               router.push('/create-client')
             }}
           />
@@ -52,7 +46,11 @@ const Clients = () => {
               <NoClientsCardTitle>Nenhum cliente cadastrado</NoClientsCardTitle>
               <NoClientsCardDescription>Deseja cadastrar um novo cliente?</NoClientsCardDescription>
             </NoClientsTextWrapper>
-            <Button mode="elevated">
+            <Button mode="elevated"
+            onPress={() => {
+              router.push('/create-client')
+            } }
+            > 
               <CreateClientBtn>
                 Cadastrar cliente
               </CreateClientBtn>
