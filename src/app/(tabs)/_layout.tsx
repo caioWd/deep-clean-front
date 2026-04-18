@@ -4,7 +4,7 @@ import { Tabs } from "expo-router";
 import Header from '../../components/header';
 import { TabBarIconWrapper } from "../../styles/pages/HomeStyles";
 import { StatusBar } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Layout = () => {
   return (

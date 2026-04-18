@@ -6,14 +6,13 @@ export const ActionWrapper = styled.View`
  width: 100%;
  align-items: center;
  gap: 4px;
- padding: 0 12px;
+ padding: 6px 12px;
 `
 
 export const ClientsWrapper = styled.View`
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 10px 0;
   background-color: #f4f4f4;
 `
 

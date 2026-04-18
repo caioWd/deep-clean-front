@@ -13,8 +13,8 @@ export const InputIconWrapper = styled.View`
   gap: 4px;
 `
 
-export const StyledInput = styled(TextInput).attrs<{errorMessage?: string}>((props) => ({
-  outlineColor: props.errorMessage ? '#D32F2F' :  '#414141',
+export const StyledInput = styled(TextInput).attrs<{ errorMessage?: string }>((props) => ({
+  outlineColor: props.errorMessage ? '#D32F2F' : '#414141',
   activeOutlineColor: '#1F6F8B',
   textColor: '#1E1E1E',
   theme: {
