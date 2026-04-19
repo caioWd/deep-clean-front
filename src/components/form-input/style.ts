@@ -10,7 +10,7 @@ export const InputIconWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  gap: 4px;
+  gap: 8px;
 `
 
 export const StyledInput = styled(TextInput).attrs<{ errorMessage?: string }>((props) => ({
@@ -21,17 +21,17 @@ export const StyledInput = styled(TextInput).attrs<{ errorMessage?: string }>((p
     roundness: 8,
   }
 }))`
-  width: 100%;
+  flex: 1;
   background-color: transparent;
 `
 
-export const ErrorMessageWrapper = styled.View`
+export const ErrorMessageWrapper = styled.View<{error ?: boolean}>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 100%;
-  padding: 4px 10px;
+  padding: 4px 40px;
   gap: 3px;
 `
 

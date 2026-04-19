@@ -2,6 +2,7 @@
 import type { ReactNode } from 'react';
 import { ErrorMessageWrapper, ErrorMessage, InputWrapper, StyledInput, InputIconWrapper } from './style'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import type { KeyboardTypeOptions, StyleProp, ViewStyle } from 'react-native';
 
 interface FormInputProps {
   value: string
@@ -10,6 +11,8 @@ interface FormInputProps {
   placeholder?: string
   icon?: ReactNode
   errorMessage?: string,
+  style?: StyleProp<ViewStyle>
+  keyboardType?: KeyboardTypeOptions 
   onPress?: () => void
   onChangeText: (value: string) => void
 }
@@ -21,11 +24,13 @@ const FormInput = ({
   placeholder,
   icon,
   errorMessage,
+  style,
+  keyboardType,
   onPress,
   onChangeText,
 }: FormInputProps) => {
   return (
-    <InputWrapper>
+    <InputWrapper style={style}>
       <InputIconWrapper>
         {icon}
         <StyledInput
@@ -36,6 +41,7 @@ const FormInput = ({
           onPress={onPress}
           onChangeText={onChangeText}
           errorMessage={errorMessage}
+          keyboardType={keyboardType}
         />
       </InputIconWrapper>
       {errorMessage && (

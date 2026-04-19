@@ -21,6 +21,9 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <StyledButton
+      style={{
+        borderRadius: 8
+      }}
       mode={mode}
       disabled={disabled}
       icon={icon}

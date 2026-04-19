@@ -1,29 +1,36 @@
 import SearchBar from "@/src/components/search-bar"
 import { ActionWrapper, ClientsWrapper, CreateClientBtn, NoClientsCard, NoClientsCardDescription, NoClientsCardTitle, NoClientsTextWrapper } from "../../../styles/pages/ClientsStyles"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import IconButton from "@/src/components/icon-button"
-import { Keyboard, TouchableWithoutFeedback } from "react-native"
+import { ActivityIndicator, Keyboard, TouchableWithoutFeedback } from "react-native"
 import { router } from "expo-router"
-import type { ClientsList } from "@/src/types/clients"
+import type { Client } from "@/src/types/clients"
 import ClientList from "@/src/components/lists/client-list"
 import NoItem from '@/src/assets/no-item.svg'
 import Button from "@/src/components/button"
-
+import { useClient } from "@/src/database/useClient"
 
 const Clients = () => {
 
+  const clientTable = useClient()
+
+  const [clients, setClients] = useState<Client[]>([])
+  const [loading, setLoading] = useState(true)
   const [searchValue, setSearchValue] = useState('')
-  const mockClients: ClientsList = {
-    clients: [
-      { name: "Caio" },
-      { name: "César" },
-      { name: "Elizio Gabriel" },
-      { name: "Evelen Silva" },
-      { name: "Kauan" },
-      { name: "Mário" },
-      { name: "Victor Guimarães" }
-    ]
-  }
+
+  useEffect(() => {
+    async function loadClients() {
+      try {
+        setLoading(true)
+        const data = await clientTable.get()
+        setClients(data)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadClients()
+  }, [])
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -38,20 +45,32 @@ const Clients = () => {
           <IconButton
             icon='plus'
             mode="contained"
+            iconColor="#f4f4f4"
             onPress={() => {
               router.push('/create-client')
             }}
           />
         </ActionWrapper>
-        {mockClients.clients.length > 0 ? (
-          <ClientList clients={mockClients} />
+
+        {loading ? (
+          <ActivityIndicator
+            animating={true}
+            color="#1F6F8B"
+            size='large'
+            style={{ marginTop: 250 }}
+          />
+        ) : clients?.length > 0 ? (
+          <ClientList clients={clients} />
         ) : (
           <NoClientsCard>
             <NoItem width={246} height={210} />
             <NoClientsTextWrapper>
               <NoClientsCardTitle>Nenhum cliente cadastrado</NoClientsCardTitle>
-              <NoClientsCardDescription>Deseja cadastrar um novo cliente?</NoClientsCardDescription>
+              <NoClientsCardDescription>
+                Deseja cadastrar um novo cliente?
+              </NoClientsCardDescription>
             </NoClientsTextWrapper>
+
             <Button mode="elevated">
               <CreateClientBtn>
                 Cadastrar cliente
@@ -59,7 +78,6 @@ const Clients = () => {
             </Button>
           </NoClientsCard>
         )}
-
       </ClientsWrapper>
     </TouchableWithoutFeedback>
 

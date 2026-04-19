@@ -10,7 +10,7 @@ export const StyledHeader = styled.View`
   justify-content: space-between;
   padding: 0 15px;
 
-  border-bottom-width: 0.5 ;
+  border-bottom-width: 0.5px;
   border-bottom-color:rgba(0,0,0,0.08);
 `
 

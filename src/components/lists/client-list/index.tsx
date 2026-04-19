@@ -1,16 +1,16 @@
-import { SectionList } from "react-native"
-import { ClientsListWrapper, SectionHeader } from "./styles"
-import ClientCard from "../../cards/client-card"
 import { List } from "react-native-paper"
-import { ClientsList, type Client } from '@/src/types/clients'
+import ClientCard from "../../cards/client-card"
+import { Client } from "@/src/types/clients"
+import { ClientsListWrapper } from "./styles"
+import { router } from "expo-router"
 
 interface ClientsListProps {
-  clients: ClientsList
+  clients: Client[]
 }
 
 const ClientList = ({ clients }: ClientsListProps) => {
   const groupedClients = Object.values(
-    clients.clients.reduce((acc, client) => {
+    clients.reduce((acc, client) => {
       const firstLetter = client.name[0].toUpperCase()
 
       if (!acc[firstLetter]) {
@@ -37,6 +37,7 @@ const ClientList = ({ clients }: ClientsListProps) => {
               key={client.name + index}
               label={client.name}
               style={{marginBottom: 10}}
+              onPress={() => router.push(`/client-details/${client.id}`)}
             />
           ))}
         </List.Section>

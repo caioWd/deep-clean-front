@@ -6,6 +6,7 @@ import type { IconSource } from "react-native-paper/lib/typescript/components/Ic
 export interface StyledIconButtonProps extends IconButtonProps {
   mode?: 'outlined' | 'contained' | 'contained-tonal'
   icon: IconSource
+  iconColor?: string
   size?: number
   disabled?: boolean
   onPress?: (e: GestureResponderEvent) => void
@@ -14,6 +15,7 @@ export interface StyledIconButtonProps extends IconButtonProps {
 const IconButton = ({
   mode,
   icon,
+  iconColor,
   size,
   disabled,
   onPress,
@@ -24,6 +26,7 @@ const IconButton = ({
       size={size}
       disabled={disabled}
       icon={icon}
+      iconColor={iconColor}
       onPress={onPress}
     />
   )
