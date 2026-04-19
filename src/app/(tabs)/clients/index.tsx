@@ -70,8 +70,12 @@ const Clients = () => {
                 Deseja cadastrar um novo cliente?
               </NoClientsCardDescription>
             </NoClientsTextWrapper>
-
-            <Button mode="elevated">
+            <Button
+              mode="elevated"
+              onPress={() => {
+                router.push('/create-client')
+              }}
+            >
               <CreateClientBtn>
                 Cadastrar cliente
               </CreateClientBtn>

@@ -16,7 +16,7 @@ export const CreateClientForm = styled.View`
 
 export const InputsWrapper = styled.View`
   width: 100%;
-  gap: 8;
+  gap: 8px;
 `
 
 export const InputWrapper = styled.View`
@@ -24,7 +24,7 @@ export const InputWrapper = styled.View`
   flex-direction: row;
   width: 100%;
   height: 80px;
-  gap: 13;
+  gap: 13px;
 `
 
 export const Header = styled.View`
