@@ -1,5 +1,5 @@
 import SearchBar from "@/src/components/search-bar"
-import { ActionWrapper, ClientsWrapper, CreateClientBtn, NoClientsCard, NoClientsCardDescription, NoClientsCardTitle, NoClientsTextWrapper } from "../../../styles/pages/ClientsStyles"
+import { ActionWrapper, ClientsWrapper, CreateClientBtn, NoClientsCard, NoClientsCardDescription, NoClientsCardTitle, NoClientsTextWrapper } from "../../styles/pages/ClientsStyles"
 import React, { useEffect, useState } from "react"
 import IconButton from "@/src/components/icon-button"
 import { ActivityIndicator, Keyboard, TouchableWithoutFeedback } from "react-native"

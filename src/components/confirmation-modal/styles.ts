@@ -7,7 +7,6 @@ export const StyledModal = styled.View`
 `
 
 export const Header = styled.View`
-  display: 1;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -15,8 +14,7 @@ export const Header = styled.View`
 `
 
 export const Main = styled.View`
-  display: 1;
-    padding: 0px 20px;
+  padding: 0px 20px;
 `
 
 export const Title = styled.Text`

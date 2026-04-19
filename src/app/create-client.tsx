@@ -7,7 +7,7 @@ import { ButtonsWrapper, CreateClientForm, CreateClientsWrapper, Header, InputsW
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { router } from "expo-router"
 import { useState } from "react"
-import { Keyboard, TouchableWithoutFeedback, View } from "react-native"
+import { Keyboard, TouchableWithoutFeedback, Vibration, View } from "react-native"
 
 const CreateClient = () => {
 
@@ -82,8 +82,10 @@ const CreateClient = () => {
     const isEmailValid = await validateEmail()
     const isPhoneValid = await validatePhone()
 
-    if (!isNameValid || !isEmailValid || !isPhoneValid) return
-
+    if (!isNameValid || !isEmailValid || !isPhoneValid) {
+      Vibration.vibrate(200)
+      return
+    }
     setOpenConfirmCreationModal(true)
   }
 
@@ -92,7 +94,7 @@ const CreateClient = () => {
       <View style={{ flex: 1 }}>
         <CreateClientsWrapper>
           <Header>
-            <IconButton icon='arrow-left' onPress={() => router.replace('/clients')} />
+            <IconButton icon='arrow-left' onPress={() => router.back()} />
             <Title>Novo cliente</Title>
           </Header>
           <CreateClientForm>
