@@ -1,7 +1,7 @@
 import { styled } from "styled-components/native";
 
 export const StyledHeader = styled.View`
-  background-color: #f4f4f4;
+  background-color: #F3F7F8;
   height: 70px;
   width: 100%;
   display: flex;

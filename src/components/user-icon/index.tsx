@@ -21,9 +21,9 @@ const UserIcon = ({
       <Avatar.Text
         size={size}
         label={label}
-        color='#f4f4f4'
+        color='#005C7ADF'
         style={{
-          backgroundColor: bgColor ? bgColor : '#979797'
+          backgroundColor: bgColor ? bgColor : '#90BFD3'
         }} />
     </UserIconWrapper>
 

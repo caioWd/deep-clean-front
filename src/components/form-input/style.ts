@@ -36,6 +36,6 @@ export const ErrorMessageWrapper = styled.View`
 `
 
 export const ErrorMessage = styled.Text`
-  color: #D32F2F;
+  color: #F15642;
   font-size: 12px;
 `

@@ -13,12 +13,12 @@ export const ClientsWrapper = styled.View`
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: #f4f4f4;
+  background-color: #F3F7F8;
 `
 
 export const ClientsTitle = styled.Text`
   text-align: center;
-  color: #1E1E1E;
+  color: #414141;
 `
 
 export const NoClientsCard = styled.View`
@@ -38,11 +38,11 @@ export const NoClientsTextWrapper = styled.View`
 
 
 export const NoClientsCardTitle = styled.Text`
-  color: #1E1E1E;
+  color: #495E7A;
 `
 
 export const NoClientsCardDescription = styled.Text`
-  color: #414141;
+  color: #647C9D;
 `
 
 export const CreateClientBtn = styled.Text`
@@ -57,5 +57,5 @@ export const TabBarIconWrapper = styled.View<{ focused: boolean }>`
   height: 30px;
   border-radius: 50px;
   
-  background-color: ${({ focused }) => focused ? '#C0E9F1' : ''};
+  background-color: ${({ focused }) => focused ? '#BEDCEA' : ''};
 `

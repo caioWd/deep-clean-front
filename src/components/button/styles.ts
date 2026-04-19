@@ -5,7 +5,7 @@ import { StyledButtonProps } from "."
 export const StyledButton = styled(Button).attrs<StyledButtonProps>(({ mode, disabled }) => ({
   labelStyle: {
     color:
-      disabled ? '#11747441' : ['elevated', 'contained'].includes(mode || '') ? '#f4f4f4' : mode === 'outlined' ? '#117474' : '#414141',
+      disabled ? '#0d757541' : ['elevated', 'contained'].includes(mode || '') ? '#f4f4f4' : mode === 'outlined' ? '#117474' : '#414141',
   },
   rippleColor: "#FFFFFF4D",
   disabled: disabled

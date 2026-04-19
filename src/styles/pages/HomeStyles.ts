@@ -5,7 +5,7 @@ export const HomeWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f4f4f4;
+  background-color: #F3F7F8;
 `
 
 export const HomeTitle = styled.Text`
@@ -21,5 +21,5 @@ export const TabBarIconWrapper = styled.View<{focused: boolean}>`
   height: 30px;
   border-radius: 50px;
   
-  background-color: ${({focused}) => focused ? '#C0E9F1' : ''};
+  background-color: ${({focused}) => focused ? '#BEDCEA' : ''};
 `

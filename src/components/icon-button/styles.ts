@@ -4,7 +4,7 @@ import { StyledIconButtonProps } from "."
 
 export const StyledIconButton = styled(IconButton).attrs<StyledIconButtonProps>(({ mode }) => (
   {
-  iconColor: ['elevated', 'contained'].includes(mode || '') ? '#f4f4f4' : mode === 'outlined' ? '#117474' : '#414141',
+  iconColor: ['elevated', 'contained'].includes(mode || '') ? '#f4f4f4' : mode === 'outlined' ? '#1F6F8B' : '#414141',
 })) <StyledIconButtonProps>`
 
  ${({ mode }) => {
