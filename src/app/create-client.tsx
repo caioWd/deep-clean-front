@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { router } from "expo-router"
 import { useState } from "react"
 import { Keyboard, TouchableWithoutFeedback, Vibration, View } from "react-native"
+import { toast } from "../utils/toast"
 
 const CreateClient = () => {
 
@@ -66,15 +67,18 @@ const CreateClient = () => {
   }
 
   const handleSubmit = async () => {
-    await clientTable.create({
-      name,
-      email,
-      phone
-    })
+    try {
+      await clientTable.create({
+        name,
+        email,
+        phone
+      })
 
-    router.replace({
-      pathname: '/clients',
-    })
+      router.replace('/clients')
+      toast.success('Cadastro concluído!', 'Todos os dados foram salvos com sucesso.');
+    } catch {
+      toast.error('Erro ao cadastrar!', 'Tente novamente em breve.');
+    }
   }
 
   const validateFields = async () => {

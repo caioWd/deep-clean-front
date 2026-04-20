@@ -9,22 +9,25 @@ interface ClientsListProps {
 }
 
 const ClientList = ({ clients }: ClientsListProps) => {
+  const sortedClients = [...clients].sort((a, b) =>
+    a.name.localeCompare(b.name, 'pt-BR')
+  );
   const groupedClients = Object.values(
-    clients.reduce((acc, client) => {
-      const firstLetter = client.name[0].toUpperCase()
+    sortedClients.reduce((acc, client) => {
+      const firstLetter = client.name[0].toUpperCase();
 
       if (!acc[firstLetter]) {
         acc[firstLetter] = {
           title: firstLetter,
-          data: []
-        }
+          data: [],
+        };
       }
 
-      acc[firstLetter].data.push(client)
+      acc[firstLetter].data.push(client);
 
-      return acc
+      return acc;
     }, {} as Record<string, { title: string; data: Client[] }>)
-  )
+  );
 
   return (
     <ClientsListWrapper>
@@ -36,7 +39,7 @@ const ClientList = ({ clients }: ClientsListProps) => {
             <ClientCard
               key={client.name + index}
               label={client.name}
-              style={{marginBottom: 10}}
+              style={{ marginBottom: 10 }}
               onPress={() => router.push(`/client-details/${client.id}`)}
             />
           ))}
