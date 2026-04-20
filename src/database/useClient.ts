@@ -33,15 +33,15 @@ export function useClient() {
   }
 
   async function getById(id: number) {
-  try {
-    const query = "SELECT * FROM clients WHERE id = ?"
-    const response = await database.getFirstAsync<Client>(query, [id])
+    try {
+      const query = "SELECT * FROM clients WHERE id = ?"
+      const response = await database.getFirstAsync<Client>(query, [id])
 
-    return response
-  } catch (error) {
-    throw error
+      return response
+    } catch (error) {
+      throw error
+    }
   }
-}
 
   async function getByName(name: string) {
     try {
@@ -77,12 +77,21 @@ export function useClient() {
   }
 
   async function searchByName(name: string) {
-    try{
+    try {
       const query = "SELECT * FROM clients WHERE name LIKE ?"
       const response = await database.getAllAsync<Client>(query, `%${name}%`)
 
       return response
-    }catch(error) {
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async function remove(id: number) {
+    try {
+      const query = "DELETE FROM clients WHERE id = ?"
+      await database.runAsync(query, [id])
+    } catch (error) {
       throw error
     }
   }
@@ -95,5 +104,6 @@ export function useClient() {
     getByEmail,
     getByPhone,
     searchByName,
+    remove,
   }
 }

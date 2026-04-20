@@ -4,6 +4,7 @@ import { useClient } from "@/src/database/useClient"
 import { ActionsWrapper, ClientDetailsWrapper, ContactsWrapper, Details, Header, Name, Title } from "@/src/styles/pages/ClientDetails"
 import type { Client } from "@/src/types/clients"
 import { getInitials } from "@/src/utils/getInitials"
+import { toast } from "@/src/utils/toast"
 import { router, useLocalSearchParams } from "expo-router"
 import { useEffect, useState } from "react"
 import { Keyboard, TouchableWithoutFeedback, View } from "react-native"
@@ -11,7 +12,7 @@ import { ActivityIndicator } from "react-native-paper"
 
 const ClientDetails = () => {
   const { id } = useLocalSearchParams()
-  const { getById } = useClient()
+  const { getById, remove } = useClient()
   const [client, setClient] = useState<Client | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -31,6 +32,16 @@ const ClientDetails = () => {
     load()
   }, [id])
 
+  const handleDelete = async () => {
+    try{
+      await remove(Number(id))
+      router.replace('/clients')
+      toast.success('Cliente deletado!', 'Todos os dados foram removidos com sucesso.')
+    } catch {
+      toast.error('Erro ao deletar!', 'Tente novamente em breve.')
+    }
+  }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={{ flex: 1 }}>
@@ -44,7 +55,7 @@ const ClientDetails = () => {
           ) : (
             <>
               <ActionsWrapper>
-                <IconButton icon='delete-outline' iconColor='#495E7A' onPress={() => console.log('Não implementado')} />
+                <IconButton icon='delete-outline' iconColor='#495E7A' onPress={handleDelete} />
                 <IconButton icon='pencil-outline' iconColor='#495E7A' onPress={() => console.log('Não implementado')} />
               </ActionsWrapper>
               <Details>
