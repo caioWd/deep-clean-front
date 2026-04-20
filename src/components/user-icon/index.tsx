@@ -6,6 +6,7 @@ interface UserIconProps {
   size: number
   label: string
   src?: string
+  iconColor?: string
   bgColor?: string
 }
 
@@ -14,6 +15,7 @@ const UserIcon = ({
   size,
   label,
   src,
+  iconColor,
   bgColor,
 }: UserIconProps) => {
   return (
@@ -21,9 +23,9 @@ const UserIcon = ({
       <Avatar.Text
         size={size}
         label={label}
-        color='#f4f4f4'
+        color={iconColor || '#005C7ADF'}
         style={{
-          backgroundColor: bgColor ? bgColor : '#979797'
+          backgroundColor: bgColor ? bgColor : '#90BFD3'
         }} />
     </UserIconWrapper>
 

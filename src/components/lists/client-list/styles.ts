@@ -11,5 +11,5 @@ export const SectionHeader = styled.Text`
   font-size: 18px;
   font-weight: bold;
   padding: 10px 16px;
-  background-color: #f5f5f5;
+  background-color: #F3F7F8;
 `

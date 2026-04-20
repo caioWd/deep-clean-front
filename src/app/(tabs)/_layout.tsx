@@ -15,6 +15,7 @@ const Layout = () => {
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: '#1F6F8B',
+          tabBarInactiveTintColor: '#495E7A',
           tabBarStyle: {
             marginBottom: 0,
             paddingBottom: 0,
@@ -27,9 +28,10 @@ const Layout = () => {
             title: 'Início',
             tabBarIcon: ({ focused }) => (
               <TabBarIconWrapper focused={focused}>
-                <MaterialCommunityIcons name="home-outline" size={24} color={focused ? '#1F6F8B' : '#323232'} />
+                <MaterialCommunityIcons name="home-outline" size={24} color={focused ? '#1F6F8B' : '#495E7A'} />
               </TabBarIconWrapper>
             )
+            
           }}
         />
         <Tabs.Screen
@@ -38,7 +40,7 @@ const Layout = () => {
             title: 'Clientes',
             tabBarIcon: ({ focused }) => (
               <TabBarIconWrapper focused={focused}>
-                <Feather name="user" size={20} color={focused ? '#1F6F8B' : '#323232'} />
+                <Feather name="user" size={20} color={focused ? '#1F6F8B' : '#495E7A'} />
               </TabBarIconWrapper>
             )
           }}

@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <Title>DeepClean</Title>
-      <UserIcon label="CW" size={36} bgColor='#FF9500'/>
+      <UserIcon label="CW" size={36} bgColor='#FF9500' iconColor="#fff" />
     </StyledHeader>
   )
 }

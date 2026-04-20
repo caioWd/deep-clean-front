@@ -8,13 +8,13 @@ export const ClientCardWrapper = styled.Pressable`
   align-items: center;
   width: 100%;
   height: 55px;
-  background-color: #ffff;
-  border-color: #979797;
+  background-color: #DEEDF4;
+  border-color: #E2F6FA;
   border-width: 1px;
   border-radius: 8px;
 `
 
 export const ClientName = styled.Text`
-  color: #414141;
+  color: #495E7A;
   font-size: 16px;
 `
