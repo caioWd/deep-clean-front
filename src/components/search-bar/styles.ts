@@ -6,7 +6,7 @@ export const StyledSearchBar = styled(Searchbar).attrs(() => ({
   placeholderTextColor: '#414141',
   selectionColor: '#414141', 
   inputStyle: {
-    color: '##414141',
+    color: '#19191B'
   },
 }))`
   background-color: #ffffff;

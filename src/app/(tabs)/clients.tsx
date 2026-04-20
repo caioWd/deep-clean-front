@@ -32,6 +32,30 @@ const Clients = () => {
     loadClients()
   }, [])
 
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      handleSearch(searchValue)
+    }, 300)
+
+    return () => clearTimeout(delayDebounce)
+  }, [searchValue])
+
+  const handleSearch = async (value: string) => {
+    try {
+      setLoading(true)
+
+      if (!value) {
+        const data = await clientTable.get()
+        setClients(data)
+      } else {
+        const data = await clientTable.searchByName(value)
+        setClients(data)
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <ClientsWrapper>
@@ -39,7 +63,7 @@ const Clients = () => {
           <SearchBar
             value={searchValue}
             onChangeValue={(value) => setSearchValue(value)}
-            placeholder="Cadastrar cliente"
+            placeholder="Buscar cliente(s)"
             hasClearIcon
           />
           <IconButton

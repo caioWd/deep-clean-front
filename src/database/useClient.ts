@@ -76,6 +76,17 @@ export function useClient() {
     }
   }
 
+  async function searchByName(name: string) {
+    try{
+      const query = "SELECT * FROM clients WHERE name LIKE ?"
+      const response = await database.getAllAsync<Client>(query, `%${name}%`)
+
+      return response
+    }catch(error) {
+      throw error
+    }
+  }
+
   return {
     create,
     get,
@@ -83,5 +94,6 @@ export function useClient() {
     getByName,
     getByEmail,
     getByPhone,
+    searchByName,
   }
 }
