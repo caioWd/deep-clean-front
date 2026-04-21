@@ -14,11 +14,16 @@ export const InputIconWrapper = styled.View`
 `
 
 export const StyledInput = styled(TextInput).attrs<{ errorMessage?: string }>((props) => ({
-  outlineColor: props.errorMessage ? '#D32F2F' : '#414141',
+  outlineColor: props.errorMessage ? '#D32F2F' : '#495E7A',
   activeOutlineColor: '#1F6F8B',
-  textColor: '#1E1E1E',
+  textColor: '#19191B',
+  placeholderTextColor: 'pink',
   theme: {
     roundness: 8,
+    colors: {
+      background: '#F3F7F8',
+      onSurfaceVariant: '#495E7A'
+    }
   }
 }))`
   flex: 1;

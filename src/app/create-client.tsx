@@ -98,7 +98,7 @@ const CreateClient = () => {
       <View style={{ flex: 1 }}>
         <CreateClientsWrapper>
           <Header>
-            <IconButton icon='arrow-left' onPress={() => router.back()} />
+            <IconButton icon='arrow-left' onPress={() => router.back()} iconColor="#495E7A"/>
             <Title>Novo cliente</Title>
           </Header>
           <CreateClientForm>
@@ -136,9 +136,10 @@ const CreateClient = () => {
               <InputWrapper>
                 <FormInput
                   value='+55'
-                  onChangeText={(email) => { setName(email) }}
+                  label=''
+                  icon={<MaterialCommunityIcons name="phone-outline" size={24} color="#495E7A" />}
                   style={{
-                    width: 80,
+                    width: 100,
                   }}
                 />
                 <FormInput
@@ -151,9 +152,8 @@ const CreateClient = () => {
                   }}
                   onPress={() => { setPhoneErrorMessage('') }}
                   errorMessage={phoneErrorMessage}
-                  icon={<MaterialCommunityIcons name="phone-outline" size={24} color="#495E7A" />}
                   style={{
-                    width: 250
+                    width: 230
                   }}
                   keyboardType='numeric'
                 />

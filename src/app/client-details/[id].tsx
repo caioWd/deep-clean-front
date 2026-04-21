@@ -56,7 +56,7 @@ const ClientDetails = () => {
             <>
               <ActionsWrapper>
                 <IconButton icon='delete-outline' iconColor='#495E7A' onPress={handleDelete} />
-                <IconButton icon='pencil-outline' iconColor='#495E7A' onPress={() => console.log('Não implementado')} />
+                <IconButton icon='pencil-outline' iconColor='#495E7A' onPress={() => router.replace(`/edit-client/${id}`)} />
               </ActionsWrapper>
               <Details>
                 <UserIcon size={120} label={getInitials(client?.name ?? '')} bgColor="#90BFD3" />

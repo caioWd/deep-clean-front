@@ -87,6 +87,31 @@ export function useClient() {
     }
   }
 
+  async function update(id: number, data: Omit<Client, 'id'>) {
+    const statement = await database.prepareAsync(
+      `
+    UPDATE clients
+    SET name = $name,
+        email = $email,
+        phone = $phone
+    WHERE id = $id
+    `
+    )
+
+    try {
+      await statement.executeAsync({
+        $id: id,
+        $name: data.name,
+        $email: data.email,
+        $phone: data.phone,
+      })
+    } catch (error) {
+      throw error
+    } finally {
+      await statement.finalizeAsync()
+    }
+  }
+
   async function remove(id: number) {
     try {
       const query = "DELETE FROM clients WHERE id = ?"
@@ -104,6 +129,7 @@ export function useClient() {
     getByEmail,
     getByPhone,
     searchByName,
+    update,
     remove,
   }
 }

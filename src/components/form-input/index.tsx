@@ -14,7 +14,7 @@ interface FormInputProps {
   style?: StyleProp<ViewStyle>
   keyboardType?: KeyboardTypeOptions 
   onPress?: () => void
-  onChangeText: (value: string) => void
+  onChangeText?: (value: string) => void
 }
 
 const FormInput = ({

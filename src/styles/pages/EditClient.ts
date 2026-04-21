@@ -1,12 +1,23 @@
 import { styled } from "styled-components/native";
 
-export const CreateClientsWrapper = styled.View`
+export const EditClientsWrapper = styled.View`
   width: 100%;
   height: 100%;
   background-color: #F3F7F8;
 `
 
-export const CreateClientForm = styled.View`
+export const Header = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const Title = styled.Text`
+  font-size: 18px;
+  color: #495E7A;
+`
+
+export const EditClientForm = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
@@ -25,17 +36,6 @@ export const InputWrapper = styled.View`
   width: 100%;
   height: 80px;
   gap: 13px;
-`
-
-export const Header = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
-
-export const Title = styled.Text`
-  font-size: 18px;
-  color: #495E7A;
 `
 
 export const ButtonsWrapper = styled.View`
