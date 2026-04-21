@@ -1,7 +1,8 @@
+import TextArea from "@/src/components/form-text-area"
 import IconButton from "@/src/components/icon-button"
 import UserIcon from "@/src/components/user-icon"
 import { useClient } from "@/src/database/useClient"
-import { ActionsWrapper, ClientDetailsWrapper, ContactsWrapper, Details, Header, Name, Title } from "@/src/styles/pages/ClientDetails"
+import { ActionsWrapper, ClientDetailsWrapper, ContactsWrapper, Description, Details, Header, Name, Title } from "@/src/styles/pages/ClientDetails"
 import type { Client } from "@/src/types/clients"
 import { getInitials } from "@/src/utils/getInitials"
 import { toast } from "@/src/utils/toast"
@@ -33,7 +34,7 @@ const ClientDetails = () => {
   }, [id])
 
   const handleDelete = async () => {
-    try{
+    try {
       await remove(Number(id))
       router.replace('/clients')
       toast.success('Cliente deletado!', 'Todos os dados foram removidos com sucesso.')
@@ -51,7 +52,7 @@ const ClientDetails = () => {
           </Header>
 
           {loading ? (
-            <ActivityIndicator animating={true} color='#1F6F8B' size='large' style={{marginTop: 250}}/>
+            <ActivityIndicator animating={true} color='#1F6F8B' size='large' style={{ marginTop: 250 }} />
           ) : (
             <>
               <ActionsWrapper>
@@ -61,6 +62,7 @@ const ClientDetails = () => {
               <Details>
                 <UserIcon size={120} label={getInitials(client?.name ?? '')} bgColor="#90BFD3" />
                 <Name>{client?.name}</Name>
+                {client?.description && (<Description>{client?.description}</Description>)}
                 <ContactsWrapper>
                   <IconButton mode='contained' icon='phone-outline' iconColor='#ffff' onPress={() => console.log('Não implementado')} size={32} />
                   <IconButton mode='contained' icon='email-outline' iconColor='#ffff' onPress={() => console.log('Não implementado')} size={32} />

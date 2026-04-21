@@ -1,5 +1,6 @@
 import Button from "@/src/components/button"
 import FormInput from "@/src/components/form-input"
+import TextArea from "@/src/components/form-text-area"
 import IconButton from "@/src/components/icon-button"
 import { useClient } from "@/src/database/useClient"
 import { ButtonsWrapper, EditClientForm, EditClientsWrapper, Header, InputsWrapper, InputWrapper, Title } from "@/src/styles/pages/EditClient"
@@ -18,12 +19,15 @@ const EditClient = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
+  const [description, setDescription] = useState('')
   const [newName, setNewName] = useState("")
   const [newEmail, setNewEmail] = useState("")
   const [newPhone, setNewPhone] = useState("")
+  const [newDescription, setNewDescription] = useState('')
   const [nameErrorMessage, setNameErrorMessage] = useState('')
   const [emailErrorMessage, setEmailErrorMessage] = useState('')
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('')
+
 
   useEffect(() => {
     async function load() {
@@ -34,13 +38,15 @@ const EditClient = () => {
           setName(data.name ?? "")
           setEmail(data.email ?? "")
           setPhone(data.phone ?? "")
+          setDescription(data.description ?? "")
           setNewName(data.name ?? "")
           setNewEmail(data.email ?? "")
           setNewPhone(data.phone ?? "")
+          setNewDescription(data.description ?? "")
 
           setLoading(false)
         }
-      } catch (error){
+      } catch (error) {
         console.error(`Get client to edit error: ${error}`)
       }
     }
@@ -99,6 +105,7 @@ const EditClient = () => {
         name: newName,
         email: newEmail,
         phone: newPhone,
+        description: newDescription
       })
 
       router.replace('/clients')
@@ -187,10 +194,28 @@ const EditClient = () => {
                     keyboardType='numeric'
                   />
                 </InputWrapper>
+                <InputWrapper>
+                  <TextArea
+                    label="Descrição"
+                    value={newDescription}
+                    onChangeText={(newDescription) => setNewDescription(newDescription)}
+                  />
+                </InputWrapper>
               </InputsWrapper>
               <ButtonsWrapper>
                 <Button mode="outlined" onPress={() => router.replace('/clients')}>Cancelar</Button>
-                <Button mode="elevated" onPress={validateFields} disabled={name === newName && email === newEmail && phone === newPhone}>Salvar</Button>
+                <Button
+                  mode="elevated"
+                  onPress={validateFields}
+                  disabled={
+                    name === newName &&
+                    email === newEmail &&
+                    phone === newPhone &&
+                    description === newDescription
+                  }
+                >
+                  Salvar
+                </Button>
               </ButtonsWrapper>
             </EditClientForm>
           )}

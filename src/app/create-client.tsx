@@ -9,6 +9,7 @@ import { router } from "expo-router"
 import { useState } from "react"
 import { Keyboard, TouchableWithoutFeedback, Vibration, View } from "react-native"
 import { toast } from "../utils/toast"
+import TextArea from "../components/form-text-area"
 
 const CreateClient = () => {
 
@@ -17,6 +18,7 @@ const CreateClient = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [description, setDescription] = useState('')
   const [nameErrorMessage, setNameErrorMessage] = useState('')
   const [emailErrorMessage, setEmailErrorMessage] = useState('')
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('')
@@ -71,7 +73,8 @@ const CreateClient = () => {
       await clientTable.create({
         name,
         email,
-        phone
+        phone,
+        description
       })
 
       router.replace('/clients')
@@ -98,7 +101,7 @@ const CreateClient = () => {
       <View style={{ flex: 1 }}>
         <CreateClientsWrapper>
           <Header>
-            <IconButton icon='arrow-left' onPress={() => router.back()} iconColor="#495E7A"/>
+            <IconButton icon='arrow-left' onPress={() => router.back()} iconColor="#495E7A" />
             <Title>Novo cliente</Title>
           </Header>
           <CreateClientForm>
@@ -156,6 +159,13 @@ const CreateClient = () => {
                     width: 230
                   }}
                   keyboardType='numeric'
+                />
+              </InputWrapper>
+              <InputWrapper>
+                <TextArea
+                  label="Descrição"
+                  value={description}
+                  onChangeText={(description) => setDescription(description)}
                 />
               </InputWrapper>
             </InputsWrapper>

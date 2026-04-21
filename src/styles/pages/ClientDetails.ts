@@ -14,8 +14,10 @@ export const Header = styled.View`
 `
 
 export const Details = styled.View`
-align-items: center;
+  flex: 1;
+  align-items: center;
   gap: 10px;
+  padding: 0 20px;
 `
 
 export const Title = styled.Text`
@@ -32,6 +34,11 @@ export const ActionsWrapper = styled.View`
 
 export const Name = styled.Text`
   font-size: 18px;
+  color: #495E7A;
+`
+
+export const Description = styled.Text`
+  font-size: 14px;
   color: #495E7A;
 `
 

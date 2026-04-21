@@ -6,13 +6,14 @@ export function useClient() {
 
   async function create(data: Omit<Client, 'id'>) {
     const statement = await database.prepareAsync(
-      "INSERT INTO clients (name, email, phone) VALUES ($name, $email, $phone)"
+      "INSERT INTO clients (name, email, phone, description) VALUES ($name, $email, $phone, $description)"
     )
     try {
       const result = await statement.executeAsync({
         $name: data.name,
         $email: data.email,
-        $phone: data.phone
+        $phone: data.phone,
+        $description: data.description
       })
     } catch (error) {
       throw error
@@ -93,7 +94,8 @@ export function useClient() {
     UPDATE clients
     SET name = $name,
         email = $email,
-        phone = $phone
+        phone = $phone,
+        description = $description
     WHERE id = $id
     `
     )
@@ -104,6 +106,7 @@ export function useClient() {
         $name: data.name,
         $email: data.email,
         $phone: data.phone,
+        $description: data.description
       })
     } catch (error) {
       throw error

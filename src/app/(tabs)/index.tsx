@@ -1,6 +1,5 @@
 import { HomeTitle, HomeWrapper } from '../../styles/pages/HomeStyles'
 
-
 const App = () => {
   return (
     <HomeWrapper>
