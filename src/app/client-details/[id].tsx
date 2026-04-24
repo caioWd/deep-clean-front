@@ -1,5 +1,6 @@
 import TextArea from "@/src/components/form-text-area"
 import IconButton from "@/src/components/icon-button"
+import ConfirmationModal from "@/src/components/confirmation-modal"
 import UserIcon from "@/src/components/user-icon"
 import { useClient } from "@/src/database/useClient"
 import { ActionsWrapper, ClientDetailsWrapper, ContactsWrapper, Description, Details, Header, Name, Title } from "@/src/styles/pages/ClientDetails"
@@ -16,6 +17,8 @@ const ClientDetails = () => {
   const { getById, remove } = useClient()
   const [client, setClient] = useState<Client | null>(null)
   const [loading, setLoading] = useState(true)
+  const [openConfirmDeletionModal, setOpenConfirmDeletionModal] = useState(false)
+
 
   useEffect(() => {
     async function load() {
@@ -56,7 +59,7 @@ const ClientDetails = () => {
           ) : (
             <>
               <ActionsWrapper>
-                <IconButton icon='delete-outline' iconColor='#495E7A' onPress={handleDelete} />
+                <IconButton icon='delete-outline' iconColor='#495E7A' onPress={() => setOpenConfirmDeletionModal(true)} />
                 <IconButton icon='pencil-outline' iconColor='#495E7A' onPress={() => router.replace(`/edit-client/${id}`)} />
               </ActionsWrapper>
               <Details>
@@ -71,6 +74,16 @@ const ClientDetails = () => {
             </>
           )}
         </ClientDetailsWrapper>
+         <ConfirmationModal
+          open={openConfirmDeletionModal}
+          title='Deletar cliente?'
+          description={'Deseja realmente excluir cliente?'}
+          firstButtonLabel='Cancelar'
+          secondButtonLabel='Deletar'
+          onClose={() => setOpenConfirmDeletionModal(false)}
+          onFirstButtonClick={() => setOpenConfirmDeletionModal(false)}
+          onSecondButtonClick={handleDelete}
+        />
       </View>
     </TouchableWithoutFeedback >
   )
