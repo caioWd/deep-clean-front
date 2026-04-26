@@ -2,6 +2,7 @@ import Button from "@/src/components/button"
 import FormInput from "@/src/components/form-input"
 import TextArea from "@/src/components/form-text-area"
 import IconButton from "@/src/components/icon-button"
+import ConfirmationModal from "@/src/components/confirmation-modal"
 import { useClient } from "@/src/database/useClient"
 import { ButtonsWrapper, EditClientForm, EditClientsWrapper, Header, InputsWrapper, InputWrapper, Title } from "@/src/styles/pages/EditClient"
 import type { Client } from "@/src/types/clients"
@@ -15,7 +16,7 @@ const EditClient = () => {
   const { id } = useLocalSearchParams()
   const { update, getById, getByName, getByEmail, getByPhone } = useClient()
   const [loading, setLoading] = useState(true)
-
+  const [openConfirmEditModal, setOpenConfirmEditModal] = useState(false)
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
@@ -124,7 +125,7 @@ const EditClient = () => {
       Vibration.vibrate(200)
       return
     }
-    handleSubmit()
+    setOpenConfirmEditModal(true)
   }
 
 
@@ -213,13 +214,23 @@ const EditClient = () => {
                     phone === newPhone &&
                     description === newDescription
                   }
-                >
+                >  
                   Salvar
                 </Button>
               </ButtonsWrapper>
             </EditClientForm>
           )}
         </EditClientsWrapper>
+         <ConfirmationModal
+          open={openConfirmEditModal}
+          title='Editar cliente?'
+          description={'Deseja editar os dados preenchidos?'}
+          firstButtonLabel='Cancelar'
+          secondButtonLabel='Confirmar'
+          onClose={() => setOpenConfirmEditModal(false)}
+          onFirstButtonClick={() => setOpenConfirmEditModal(false)}
+          onSecondButtonClick={handleSubmit}
+        />
       </View>
     </TouchableWithoutFeedback>
   )
