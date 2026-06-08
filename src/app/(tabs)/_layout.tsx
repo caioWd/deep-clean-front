@@ -23,15 +23,15 @@ const Layout = () => {
           },
         }}>
         <Tabs.Screen
-          name="index"
+          name="home"
           options={{
             title: 'Início',
             tabBarIcon: ({ focused }) => (
               <TabBarIconWrapper focused={focused}>
-                <MaterialCommunityIcons name="home-outline" size={24} color={focused ? '#1F6F8B' : '#495E7A'} />
+                <MaterialCommunityIcons name="home-outline" size={28} color={focused ? '#1F6F8B' : '#495E7A'} />
               </TabBarIconWrapper>
             )
-            
+
           }}
         />
         <Tabs.Screen
@@ -40,7 +40,18 @@ const Layout = () => {
             title: 'Clientes',
             tabBarIcon: ({ focused }) => (
               <TabBarIconWrapper focused={focused}>
-                <Feather name="user" size={20} color={focused ? '#1F6F8B' : '#495E7A'} />
+                <Feather name="user" size={24} color={focused ? '#1F6F8B' : '#495E7A'}/>
+              </TabBarIconWrapper>
+            )
+          }}
+        />
+        <Tabs.Screen
+          name="services"
+          options={{
+            title: 'Serviços',
+            tabBarIcon: ({ focused }) => (
+              <TabBarIconWrapper focused={focused}>
+                <MaterialCommunityIcons name="clipboard-list-outline" size={24} color={focused ? '#1F6F8B' : '#495E7A'} />
               </TabBarIconWrapper>
             )
           }}

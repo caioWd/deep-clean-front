@@ -33,5 +33,5 @@ export default function Layout() {
       </View>
       <Toast config={toastConfig} />
     </SQLiteProvider>
-  );
+  )
 }

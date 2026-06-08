@@ -10,6 +10,7 @@ export interface StyledIconButtonProps extends IconButtonProps {
   size?: number
   disabled?: boolean
   onPress?: (e: GestureResponderEvent) => void
+  onLongPress?: (e: GestureResponderEvent) => void
 }
 
 const IconButton = ({
@@ -19,6 +20,7 @@ const IconButton = ({
   size,
   disabled,
   onPress,
+  onLongPress,
 }: StyledIconButtonProps) => {
   return (
     <StyledIconButton
@@ -28,6 +30,7 @@ const IconButton = ({
       icon={icon}
       iconColor={iconColor}
       onPress={onPress}
+      onLongPress={onLongPress}
     />
   )
 }

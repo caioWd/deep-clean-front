@@ -1,10 +1,9 @@
-import TextArea from "@/src/components/form-text-area"
-import IconButton from "@/src/components/icon-button"
 import ConfirmationModal from "@/src/components/confirmation-modal"
+import IconButton from "@/src/components/icon-button"
 import UserIcon from "@/src/components/user-icon"
-import { useClient } from "@/src/database/useClient"
-import { ActionsWrapper, ClientDetailsWrapper, ContactsWrapper, Description, Details, Header, Name, Title } from "@/src/styles/pages/ClientDetails"
-import type { Client } from "@/src/types/clients"
+import { useUser } from "@/src/database/useUsers"
+import { ActionsWrapper, ClientDetailsWrapper, ContactsWrapper, Description, Details, Header, Name } from "@/src/styles/pages/ClientDetails"
+import type { User } from "@/src/types/users"
 import { getInitials } from "@/src/utils/getInitials"
 import { toast } from "@/src/utils/toast"
 import { router, useLocalSearchParams } from "expo-router"
@@ -14,8 +13,8 @@ import { ActivityIndicator } from "react-native-paper"
 
 const ClientDetails = () => {
   const { id } = useLocalSearchParams()
-  const { getById, remove } = useClient()
-  const [client, setClient] = useState<Client | null>(null)
+  const { getById, remove } = useUser()
+  const [client, setClient] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [openConfirmDeletionModal, setOpenConfirmDeletionModal] = useState(false)
 
@@ -74,7 +73,7 @@ const ClientDetails = () => {
             </>
           )}
         </ClientDetailsWrapper>
-         <ConfirmationModal
+        <ConfirmationModal
           open={openConfirmDeletionModal}
           title='Deletar cliente?'
           description={'Deseja realmente excluir cliente?'}

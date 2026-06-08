@@ -6,6 +6,7 @@ export const HomeWrapper = styled.View`
   align-items: center;
   justify-content: center;
   background-color: #F3F7F8;
+  padding: 10px 15px;
 `
 
 export const HomeTitle = styled.Text`

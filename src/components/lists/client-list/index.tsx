@@ -1,8 +1,8 @@
+import { Client } from "@/src/types/users"
+import { router } from "expo-router"
 import { List } from "react-native-paper"
 import ClientCard from "../../cards/client-card"
-import { Client } from "@/src/types/clients"
 import { ClientsListWrapper } from "./styles"
-import { router } from "expo-router"
 
 interface ClientsListProps {
   clients: Client[]

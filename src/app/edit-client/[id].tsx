@@ -1,11 +1,11 @@
 import Button from "@/src/components/button"
+import ConfirmationModal from "@/src/components/confirmation-modal"
 import FormInput from "@/src/components/form-input"
 import TextArea from "@/src/components/form-text-area"
 import IconButton from "@/src/components/icon-button"
-import ConfirmationModal from "@/src/components/confirmation-modal"
-import { useClient } from "@/src/database/useClient"
+import { useUser } from "@/src/database/useUsers"
 import { ButtonsWrapper, EditClientForm, EditClientsWrapper, Header, InputsWrapper, InputWrapper, Title } from "@/src/styles/pages/EditClient"
-import type { Client } from "@/src/types/clients"
+import type { User } from "@/src/types/users"
 import { toast } from "@/src/utils/toast"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { router, useLocalSearchParams } from "expo-router"
@@ -14,10 +14,11 @@ import { ActivityIndicator, Keyboard, TouchableWithoutFeedback, Vibration, View 
 
 const EditClient = () => {
   const { id } = useLocalSearchParams()
-  const { update, getById, getByName, getByEmail, getByPhone } = useClient()
+  const { update, getById, getByName, getByEmail, getByPhone } = useUser()
   const [loading, setLoading] = useState(true)
   const [openConfirmEditModal, setOpenConfirmEditModal] = useState(false)
   const [name, setName] = useState("")
+  const [role, setRole] = useState<User["role"]>("client")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [description, setDescription] = useState('')
@@ -32,25 +33,30 @@ const EditClient = () => {
 
   useEffect(() => {
     async function load() {
-      setLoading(true)
       try {
-        const data = await getById(Number(id))
-        if (data) {
-          setName(data.name ?? "")
-          setEmail(data.email ?? "")
-          setPhone(data.phone ?? "")
-          setDescription(data.description ?? "")
-          setNewName(data.name ?? "")
-          setNewEmail(data.email ?? "")
-          setNewPhone(data.phone ?? "")
-          setNewDescription(data.description ?? "")
+        setLoading(true)
 
-          setLoading(false)
+        const data = await getById(Number(id))
+
+        if (data) {
+          setName(data.name)
+          setEmail(data.email)
+          setPhone(data.phone)
+          setDescription(data.description ?? "")
+          setRole(data.role)
+
+          setNewName(data.name)
+          setNewEmail(data.email)
+          setNewPhone(data.phone)
+          setNewDescription(data.description ?? "")
         }
       } catch (error) {
         console.error(`Get client to edit error: ${error}`)
+      } finally {
+        setLoading(false)
       }
     }
+
     load()
   }, [id])
 
@@ -70,33 +76,40 @@ const EditClient = () => {
     return true
   }
   const validateEmail = async () => {
-    if (newEmail === newEmail) return true
+    if (newEmail === email) return true
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     if (newEmail.trim() && !emailRegex.test(newEmail)) {
-      setEmailErrorMessage('inválido.')
+      setEmailErrorMessage('Email inválido.')
       return false
     }
 
     const isAlreadyAdded = await getByEmail(newEmail)
+
     if (isAlreadyAdded.length > 0) {
       setEmailErrorMessage('Email já cadastrado.')
       return false
     }
+
     return true
   }
 
   const validatePhone = async () => {
-    if (newPhone === newPhone) return true
+    if (newPhone === phone) return true
+
     if (newPhone.length < 9) {
-      setPhoneErrorMessage('Telefone inválido')
+      setPhoneErrorMessage('Telefone inválido.')
       return false
     }
+
     const isAlreadyAdded = await getByPhone(newPhone)
+
     if (isAlreadyAdded.length > 0) {
       setPhoneErrorMessage('Telefone já cadastrado.')
       return false
     }
+
     return true
   }
 
@@ -106,13 +119,23 @@ const EditClient = () => {
         name: newName,
         email: newEmail,
         phone: newPhone,
-        description: newDescription
+        description: newDescription,
+        role
       })
 
       router.replace('/clients')
-      toast.success('Alterações salvas!', 'Alterações de cliente salvas!');
-    } catch {
-      toast.error('Erro ao editar cliente!', 'Tente novamente em breve.');
+
+      toast.success(
+        'Alterações salvas!',
+        'Alterações de cliente salvas!'
+      )
+    } catch (error) {
+      console.error(error)
+
+      toast.error(
+        'Erro ao editar cliente!',
+        'Tente novamente em breve.'
+      )
     }
   }
 
@@ -214,14 +237,14 @@ const EditClient = () => {
                     phone === newPhone &&
                     description === newDescription
                   }
-                >  
+                >
                   Salvar
                 </Button>
               </ButtonsWrapper>
             </EditClientForm>
           )}
         </EditClientsWrapper>
-         <ConfirmationModal
+        <ConfirmationModal
           open={openConfirmEditModal}
           title='Editar cliente?'
           description={'Deseja editar os dados preenchidos?'}
